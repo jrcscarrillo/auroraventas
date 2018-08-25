@@ -1,15 +1,15 @@
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
     </div> 
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <nav>
             <ul class="pagination">
-                <li class="previous">{{ link_to("route/index", "Atras") }}</li>
+                <li>{{ link_to("route/index", "Atras", "class":"btn btn-info") }}</li>
                 <li>{{ link_to("route/search", "Primera") }}</li>
                 <li>{{ link_to("route/search?page="~page.before, "Ant.") }}</li>
                 <li>{{ link_to("route/search?page="~page.next, "Sig.") }}</li>
                 <li>{{ link_to("route/search?page="~page.last, "Fin") }}</li>
-                <li>{{ link_to("ruta", "Agregar") }}</li>
+                <li>{{ link_to("ruta", "Agregar", "class":"btn btn-info") }}</li>
             </ul>
         </nav>
     </div>

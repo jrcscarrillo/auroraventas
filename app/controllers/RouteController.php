@@ -126,19 +126,15 @@ class RouteController extends ControllerBase {
 
             return;
         }
-
+        $this->view->disable();
         $this->flash->success("La ruta fue creada exitosamente");
 
-        $this->dispatcher->forward([
+        return $this->dispatcher->forward([
            'controller' => "ruta",
            'action' => 'index'
         ]);
     }
 
-    /**
-     * Saves a route edited
-     *
-     */
     public function saveAction() {
 
         if (!$this->request->isPost()) {
@@ -184,18 +180,19 @@ class RouteController extends ControllerBase {
             $this->dispatcher->forward([
                'controller' => "route",
                'action' => 'edit',
-               'params' => [$route->getListid()]
+               'params' => [$route->getlistID()]
             ]);
 
             return;
         }
-
+        $this->view->disable();
         $this->flash->success("La ruta fue actualizada satisfactoriamente");
-
-        $this->dispatcher->forward([
-           'controller' => "route",
-           'action' => 'search'
-        ]);
+//        return $this->dispatcher->forward([
+//           'controller' => "route",
+//           'action' => 'search'
+//        ]);
+        $this->request->redirect("route/search");
+        return false;
     }
 
     /**

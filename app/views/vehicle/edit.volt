@@ -1,10 +1,9 @@
-{% extends "layouts/adicional_1.volt" %}
+{% extends "layouts/adicional.volt" %}
 {% block forma %}
     {{ content() }}
     <p>
         {{ link_to("vehicle", "Regresar", "class": "btn btn-primary") }}
     </p>
-    <div class="body bg-blue">
     {% endblock %}
     {% block cabecera %}
         {{ form('vehicle/save', 'id': 'routenewForm', 'class': 'sky-form') }}
@@ -102,7 +101,7 @@
         <fieldset>
             <section>
                 <div class="row">
-                    <label class="label col col-2">notas</label>
+                    <label class="label col col-2">Placa</label>
                     <div class="col col-4">
                         <label class="input">
                             <i class="icon-append fa fa-user"></i>
@@ -117,5 +116,4 @@
             <p class="help-block">Usted esta actualizando un vehiculo.</p>
         </footer>
     </form>
-</div>
 {% endblock %}

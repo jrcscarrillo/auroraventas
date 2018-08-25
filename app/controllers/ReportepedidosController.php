@@ -75,27 +75,22 @@ class ReportepedidosController extends ControllerBase {
 //        var_dump($_SESSION);
         if ($this->tipo === "1") {
             $this->dispatcher->forward([
-               'controller' => "reportepedidos",
                'action' => 'totalmensual',
             ]);
         } elseif ($this->tipo === "2") {
             $this->dispatcher->forward([
-               'controller' => "reportepedidos",
                'action' => 'totalrep',
             ]);
         } elseif ($this->tipo === "3") {
             $this->dispatcher->forward([
-               'controller' => "reportepedidos",
                'action' => 'totalitem',
             ]);
         } elseif ($this->tipo === "4") {
             $this->dispatcher->forward([
-               'controller' => "reportepedidos",
                'action' => 'repmensual',
             ]);
         } elseif ($this->tipo === "5") {
             $this->dispatcher->forward([
-               'controller' => "reportepedidos",
                'action' => 'itemmensual',
             ]);
         }

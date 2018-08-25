@@ -130,11 +130,11 @@ class VehicleController extends ControllerBase
 
         $this->view->disable();
         $this->flash->success("El vehiculo ha sido generado satisfactoriamente");
-
         return $this->dispatcher->forward([
             'controller' => "vehicle",
             'action' => 'index'
         ]);
+        
     }
 
     public function saveAction()
@@ -164,15 +164,15 @@ class VehicleController extends ControllerBase
         }
 
         $fecha = date('Y-m-d H:m:s');
-        $route->setTimemodified($fecha);
-        $route->setName($this->request->getPost("name"));
-        $route->setDescription($this->request->getPost("description"));
-        $route->setAddress($this->request->getPost("address"));
-        $route->setPhone($this->request->getPost("phone"));
-        $route->setEmail($this->request->getPost("email"));
-        $route->setTipoid($this->request->getPost("tipoId"));
-        $route->setNumeroid($this->request->getPost("numeroId"));
-        $route->setCustomfield1($this->request->getPost("customField1"));        
+        $vehicle->setTimemodified($fecha);
+        $vehicle->setName($this->request->getPost("name"));
+        $vehicle->setDescription($this->request->getPost("description"));
+        $vehicle->setAddress($this->request->getPost("address"));
+        $vehicle->setPhone($this->request->getPost("phone"));
+        $vehicle->setEmail($this->request->getPost("email"));
+        $vehicle->setTipoid($this->request->getPost("tipoId"));
+        $vehicle->setNumeroid($this->request->getPost("numeroId"));
+        $vehicle->setCustomfield1($this->request->getPost("customField1"));        
 
         if (!$vehicle->save()) {
 
@@ -193,7 +193,7 @@ class VehicleController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "vehicle",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -229,7 +229,7 @@ class VehicleController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "vehicle",
-            'action' => "index"
+            'action' => "search"
         ]);
     }
 

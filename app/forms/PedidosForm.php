@@ -48,7 +48,7 @@ class PedidosForm extends Form {
               ))
         ));
         $this->add($SalesRepRef_FullName);
-        
+
         $Status = new Text("Status");
         $Status->setLabel("Estado");
         $Status->setFilters(array('striptags', 'strig'));
@@ -58,7 +58,6 @@ class PedidosForm extends Form {
               ))
         ));
         $this->add($Status);
-
     }
 
 }

@@ -1,10 +1,9 @@
-{% extends "layouts/adicional_1.volt" %}
+{% extends "layouts/adicional.volt" %}
 {% block forma %}
     {{ content() }}
     <p>
         {{ link_to("route", "Regresar", "class": "btn btn-primary") }}
     </p>
-    <div class="body bg-blue">
     {% endblock %}
     {% block cabecera %}
         {{ form('route/save', 'id': 'routenewForm', 'class': 'sky-form') }}
@@ -114,8 +113,7 @@
         </fieldset>
         <footer>
             {{ submit_button('Submit', 'class': 'btn btn-primary') }}
-            <p class="help-block">Usted esta generando un nuevo chofer.</p>
+            <p class="help-block">Usted esta modificando una ruta.</p>
         </footer>
     </form>
-</div>
 {% endblock %}

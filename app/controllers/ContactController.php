@@ -65,6 +65,8 @@ class ContactController extends ControllerBase
 
         $this->flash->success('Gracias, le contactaremos en las proximas horas');
         var_dump($_SESSION);
+        var_dump($_SERVER);
+        var_dump($_POST);
         return $this->dispatcher->forward(
             [
                 "controller" => "index",

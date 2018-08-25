@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/auroraventas/app/views/ruta/index.volt</file>
-            <file>file:/C:/wamp64/www/auroraventas/app/controllers/DriverController.php</file>
-            <file>file:/C:/wamp64/www/auroraventas/app/views/register/index.volt</file>
-            <file>file:/C:/wamp64/www/auroraventas/app/controllers/RouteController.php</file>
-            <file>file:/C:/wamp64/www/auroraventas/app/controllers/RegisterController.php</file>
-            <file>file:/C:/wamp64/www/auroraventas/app/controllers/RutaController.php</file>
+            <file>file:/C:/wamp64/www/auroraventas/app/library/ToPrtInv.php</file>
+            <file>file:/C:/wamp64/www/auroraventas/app/controllers/ReporteinventariosController.php</file>
+            <file>file:/C:/wamp64/www/auroraventas/app/controllers/LotestrxcabController.php</file>
+            <file>file:/C:/wamp64/www/auroraventas/app/forms/LotesCabNewForm.php</file>
+            <file>file:/C:/wamp64/www/auroraventas/app/controllers/LotesdetalleController.php</file>
+            <file>file:/C:/wamp64/www/auroraventas/app/forms/ReporteInventariosForm.php</file>
+            <file>file:/C:/wamp64/www/auroraventas/app/models/Lotestrx.php</file>
         </group>
     </open-files>
 </project-private>

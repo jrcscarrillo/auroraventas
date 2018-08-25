@@ -6,17 +6,18 @@ use Phalcon\Paginator\Adapter\Model as Paginator;
 
 class WarehouseController extends ControllerBase
 {
-    /**
-     * Index action
-     */
-    public function indexAction()
-    {
-        $this->persistent->parameters = null;
+    public function initialize() {
+        $this->tag->setTitle('Bodegas');
+        parent::initialize();
     }
 
-    /**
-     * Searches for warehouse
-     */
+    public function indexAction() {
+        $this->session->conditions = null;
+        $this->view->form = new RouteForm();
+        $this->tag->setDefault("name", "");
+        $this->tag->setDefault("description", "");
+        $this->tag->setDefault("phone", "");
+    }
     public function searchAction()
     {
         $numberPage = 1;
@@ -35,7 +36,7 @@ class WarehouseController extends ControllerBase
 
         $warehouse = Warehouse::find($parameters);
         if (count($warehouse) == 0) {
-            $this->flash->notice("The search did not find any warehouse");
+            $this->flash->notice("La se encontro la bodega o bodegas con esos paramentros");
 
             $this->dispatcher->forward([
                 "controller" => "warehouse",
@@ -54,26 +55,18 @@ class WarehouseController extends ControllerBase
         $this->view->page = $paginator->getPaginate();
     }
 
-    /**
-     * Displays the creation form
-     */
     public function newAction()
     {
-
+        $this->view->form = new RouteNewForm();
     }
 
-    /**
-     * Edits a warehouse
-     *
-     * @param string $listID
-     */
     public function editAction($listID)
     {
         if (!$this->request->isPost()) {
 
             $warehouse = Warehouse::findFirstBylistID($listID);
             if (!$warehouse) {
-                $this->flash->error("warehouse was not found");
+                $this->flash->error("La bodega no ha sido encontrada");
 
                 $this->dispatcher->forward([
                     'controller' => "warehouse",
@@ -83,31 +76,20 @@ class WarehouseController extends ControllerBase
                 return;
             }
 
-            $this->view->listID = $warehouse->getListid();
+            $this->view->form = new RouteNewForm();
 
-            $this->tag->setDefault("listID", $warehouse->getListid());
-            $this->tag->setDefault("timeCreated", $warehouse->getTimecreated());
-            $this->tag->setDefault("timeModified", $warehouse->getTimemodified());
-            $this->tag->setDefault("editSequence", $warehouse->getEditsequence());
-            $this->tag->setDefault("name", $warehouse->getName());
-            $this->tag->setDefault("isActive", $warehouse->getIsactive());
-            $this->tag->setDefault("description", $warehouse->getDescription());
-            $this->tag->setDefault("address", $warehouse->getAddress());
-            $this->tag->setDefault("phone", $warehouse->getPhone());
-            $this->tag->setDefault("email", $warehouse->getEmail());
-            $this->tag->setDefault("tipoId", $warehouse->getTipoid());
-            $this->tag->setDefault("numeroId", $warehouse->getNumeroid());
-            $this->tag->setDefault("customField1", $warehouse->getCustomfield1());
-            $this->tag->setDefault("customField2", $warehouse->getCustomfield2());
-            $this->tag->setDefault("customField3", $warehouse->getCustomfield3());
-            $this->tag->setDefault("status", $warehouse->getStatus());
-            
+            $this->tag->setDefault("listID", $warehouse->getlistID());
+            $this->tag->setDefault("name", $warehouse->getname());
+            $this->tag->setDefault("description", $warehouse->getdescription());
+            $this->tag->setDefault("address", $warehouse->getaddress());
+            $this->tag->setDefault("phone", $warehouse->getphone());
+            $this->tag->setDefault("email", $warehouse->getemail());
+            $this->tag->setDefault("tipoId", $warehouse->gettipoId());
+            $this->tag->setDefault("numeroId", $warehouse->getnumeroId());
+            $this->tag->setDefault("customField1", $warehouse->getcustomField1());            
         }
     }
 
-    /**
-     * Creates a new warehouse
-     */
     public function createAction()
     {
         if (!$this->request->isPost()) {
@@ -120,23 +102,18 @@ class WarehouseController extends ControllerBase
         }
 
         $warehouse = new Warehouse();
-        $warehouse->setListid($this->request->getPost("listID"));
-        $warehouse->setTimecreated($this->request->getPost("timeCreated"));
-        $warehouse->setTimemodified($this->request->getPost("timeModified"));
-        $warehouse->setEditsequence($this->request->getPost("editSequence"));
-        $warehouse->setName($this->request->getPost("name"));
-        $warehouse->setIsactive($this->request->getPost("isActive"));
-        $warehouse->setDescription($this->request->getPost("description"));
-        $warehouse->setAddress($this->request->getPost("address"));
-        $warehouse->setPhone($this->request->getPost("phone"));
-        $warehouse->setEmail($this->request->getPost("email", "email"));
-        $warehouse->setTipoid($this->request->getPost("tipoId"));
-        $warehouse->setNumeroid($this->request->getPost("numeroId"));
-        $warehouse->setCustomfield1($this->request->getPost("customField1"));
-        $warehouse->setCustomfield2($this->request->getPost("customField2"));
-        $warehouse->setCustomfield3($this->request->getPost("customField3"));
-        $warehouse->setStatus($this->request->getPost("status"));
-        
+        $id = $this->claves->guid();
+        $warehouse->setlistID($id);
+        $warehouse->seteditSequence(rand(100, 10000));
+        $warehouse->setname($this->request->getPost("name"));
+        $warehouse->setisActive(1);
+        $warehouse->setdescription($this->request->getPost("description"));
+        $warehouse->setaddress($this->request->getPost("address"));
+        $warehouse->setphone($this->request->getPost("phone"));
+        $warehouse->setemail($this->request->getPost("email", "email"));
+        $warehouse->settipoId($this->request->getPost("tipoId"));
+        $warehouse->setnumeroId($this->request->getPost("numeroId"));
+        $warehouse->setcustomField1($this->request->getPost("customField1"));         
 
         if (!$warehouse->save()) {
             foreach ($warehouse->getMessages() as $message) {
@@ -150,8 +127,8 @@ class WarehouseController extends ControllerBase
 
             return;
         }
-
-        $this->flash->success("warehouse was created successfully");
+        $this->view->disable();
+        $this->flash->success("La bodega fue generada satisfactoriamente");
 
         $this->dispatcher->forward([
             'controller' => "warehouse",
@@ -159,10 +136,6 @@ class WarehouseController extends ControllerBase
         ]);
     }
 
-    /**
-     * Saves a warehouse edited
-     *
-     */
     public function saveAction()
     {
 
@@ -179,7 +152,7 @@ class WarehouseController extends ControllerBase
         $warehouse = Warehouse::findFirstBylistID($listID);
 
         if (!$warehouse) {
-            $this->flash->error("warehouse does not exist " . $listID);
+            $this->flash->error("Esta bodega no existe " . $listID);
 
             $this->dispatcher->forward([
                 'controller' => "warehouse",
@@ -189,24 +162,16 @@ class WarehouseController extends ControllerBase
             return;
         }
 
-        $warehouse->setListid($this->request->getPost("listID"));
-        $warehouse->setTimecreated($this->request->getPost("timeCreated"));
-        $warehouse->setTimemodified($this->request->getPost("timeModified"));
-        $warehouse->setEditsequence($this->request->getPost("editSequence"));
+        $fecha = date('Y-m-d H:m:s');
+        $warehouse->setTimemodified($fecha);
         $warehouse->setName($this->request->getPost("name"));
-        $warehouse->setIsactive($this->request->getPost("isActive"));
         $warehouse->setDescription($this->request->getPost("description"));
         $warehouse->setAddress($this->request->getPost("address"));
         $warehouse->setPhone($this->request->getPost("phone"));
-        $warehouse->setEmail($this->request->getPost("email", "email"));
+        $warehouse->setEmail($this->request->getPost("email"));
         $warehouse->setTipoid($this->request->getPost("tipoId"));
         $warehouse->setNumeroid($this->request->getPost("numeroId"));
-        $warehouse->setCustomfield1($this->request->getPost("customField1"));
-        $warehouse->setCustomfield2($this->request->getPost("customField2"));
-        $warehouse->setCustomfield3($this->request->getPost("customField3"));
-        $warehouse->setStatus($this->request->getPost("status"));
-        
-
+        $warehouse->setCustomfield1($this->request->getPost("customField1"));  
         if (!$warehouse->save()) {
 
             foreach ($warehouse->getMessages() as $message) {
@@ -221,25 +186,20 @@ class WarehouseController extends ControllerBase
 
             return;
         }
+        $this->view->disable();
+        $this->flash->success("La bodega fue actualizada satisfactoriamente");
 
-        $this->flash->success("warehouse was updated successfully");
-
-        $this->dispatcher->forward([
+        return $this->dispatcher->forward([
             'controller' => "warehouse",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
-    /**
-     * Deletes a warehouse
-     *
-     * @param string $listID
-     */
     public function deleteAction($listID)
     {
         $warehouse = Warehouse::findFirstBylistID($listID);
         if (!$warehouse) {
-            $this->flash->error("warehouse was not found");
+            $this->flash->error("Esta bodega no fue encontrada");
 
             $this->dispatcher->forward([
                 'controller' => "warehouse",
@@ -263,11 +223,11 @@ class WarehouseController extends ControllerBase
             return;
         }
 
-        $this->flash->success("warehouse was deleted successfully");
+        $this->flash->success("La bodega fue eliminada satisfactoriamente");
 
         $this->dispatcher->forward([
             'controller' => "warehouse",
-            'action' => "index"
+            'action' => "search"
         ]);
     }
 

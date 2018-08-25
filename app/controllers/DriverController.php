@@ -118,7 +118,7 @@ class DriverController extends ControllerBase {
 
             $this->dispatcher->forward([
                'controller' => "driver",
-               'action' => 'new'
+               'action' => 'edit'
             ]);
 
             return;
@@ -128,7 +128,7 @@ class DriverController extends ControllerBase {
 
         $this->dispatcher->forward([
            'controller' => "driver",
-           'action' => 'index'
+           'action' => 'search'
         ]);
     }
 
@@ -183,12 +183,12 @@ class DriverController extends ControllerBase {
 
             return;
         }
-
+        $this->view->disable();
         $this->flash->success("El chofer fue actualizado exitosamente");
 
-        $this->dispatcher->forward([
+        return $this->dispatcher->forward([
            'controller' => "driver",
-           'action' => 'index'
+           'action' => 'search'
         ]);
     }
 
@@ -213,7 +213,7 @@ class DriverController extends ControllerBase {
 
             $this->dispatcher->forward([
                'controller' => "driver",
-               'action' => 'search'
+               'action' => 'index'
             ]);
 
             return;
@@ -223,7 +223,7 @@ class DriverController extends ControllerBase {
 
         $this->dispatcher->forward([
            'controller' => "driver",
-           'action' => "index"
+           'action' => "search"
         ]);
     }
 

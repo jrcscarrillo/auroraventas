@@ -52,6 +52,11 @@ public $AverageCost;   // (normal Attribute)
            'ItemRef_ListID'
            );
         
+        $this->hasMany(
+           'quickbooks_listid',
+           'lotestrx',
+           'ItemRef_ListID'
+           );
     }
 
     /**

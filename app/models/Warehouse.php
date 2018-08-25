@@ -1,746 +1,167 @@
 <?php
 
-use Phalcon\Validation\Validator\Email as EmailValidator;
-
 class Warehouse extends \Phalcon\Mvc\Model
 {
+// **********************
+// ATTRIBUTE DECLARATION
+// **********************
 
-    /**
-     *
-     * @var string
-     * @Primary
-     * @Column(type="string", length=25, nullable=false)
-     */
+
     protected $listID;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
     protected $timeCreated;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
     protected $timeModified;
-
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=11, nullable=false)
-     */
     protected $editSequence;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=255, nullable=false)
-     */
     protected $name;
-
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=1, nullable=false)
-     */
     protected $isActive;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=255, nullable=false)
-     */
     protected $description;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=75, nullable=false)
-     */
     protected $address;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=10, nullable=false)
-     */
     protected $phone;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=125, nullable=false)
-     */
     protected $email;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=2, nullable=false)
-     */
     protected $tipoId;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=13, nullable=false)
-     */
     protected $numeroId;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=50, nullable=false)
-     */
     protected $customField1;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=50, nullable=false)
-     */
     protected $customField2;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=50, nullable=false)
-     */
     protected $customField3;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=10, nullable=false)
-     */
     protected $status;
 
-    /**
-     * Method to set the value of field listID
-     *
-     * @param string $listID
-     * @return $this
-     */
-    public function setListID($listID)
-    {
-        $this->listID = $listID;
+// **********************
+// GETTER METHODS
+// **********************
 
-        return $this;
-    }
 
-    /**
-     * Method to set the value of field timeCreated
-     *
-     * @param string $timeCreated
-     * @return $this
-     */
-    public function setTimeCreated($timeCreated)
-    {
-        $this->timeCreated = $timeCreated;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field timeModified
-     *
-     * @param string $timeModified
-     * @return $this
-     */
-    public function setTimeModified($timeModified)
-    {
-        $this->timeModified = $timeModified;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field editSequence
-     *
-     * @param integer $editSequence
-     * @return $this
-     */
-    public function setEditSequence($editSequence)
-    {
-        $this->editSequence = $editSequence;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field name
-     *
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field isActive
-     *
-     * @param integer $isActive
-     * @return $this
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field description
-     *
-     * @param string $description
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field address
-     *
-     * @param string $address
-     * @return $this
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field phone
-     *
-     * @param string $phone
-     * @return $this
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field email
-     *
-     * @param string $email
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field tipoId
-     *
-     * @param string $tipoId
-     * @return $this
-     */
-    public function setTipoId($tipoId)
-    {
-        $this->tipoId = $tipoId;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field numeroId
-     *
-     * @param string $numeroId
-     * @return $this
-     */
-    public function setNumeroId($numeroId)
-    {
-        $this->numeroId = $numeroId;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field customField1
-     *
-     * @param string $customField1
-     * @return $this
-     */
-    public function setCustomField1($customField1)
-    {
-        $this->customField1 = $customField1;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field customField2
-     *
-     * @param string $customField2
-     * @return $this
-     */
-    public function setCustomField2($customField2)
-    {
-        $this->customField2 = $customField2;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field customField3
-     *
-     * @param string $customField3
-     * @return $this
-     */
-    public function setCustomField3($customField3)
-    {
-        $this->customField3 = $customField3;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field status
-     *
-     * @param string $status
-     * @return $this
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Returns the value of field listID
-     *
-     * @return string
-     */
-    public function getListID()
-    {
+    function getlistID() {
         return $this->listID;
     }
 
-    /**
-     * Returns the value of field timeCreated
-     *
-     * @return string
-     */
-    public function getTimeCreated()
-    {
+    function gettimeCreated() {
         return $this->timeCreated;
     }
 
-    /**
-     * Returns the value of field timeModified
-     *
-     * @return string
-     */
-    public function getTimeModified()
-    {
+    function gettimeModified() {
         return $this->timeModified;
     }
 
-    /**
-     * Returns the value of field editSequence
-     *
-     * @return integer
-     */
-    public function getEditSequence()
-    {
+    function geteditSequence() {
         return $this->editSequence;
     }
 
-    /**
-     * Returns the value of field name
-     *
-     * @return string
-     */
-    public function getName()
-    {
+    function getname() {
         return $this->name;
     }
 
-    /**
-     * Returns the value of field isActive
-     *
-     * @return integer
-     */
-    public function getIsActive()
-    {
+    function getisActive() {
         return $this->isActive;
     }
 
-    /**
-     * Returns the value of field description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
+    function getdescription() {
         return $this->description;
     }
 
-    /**
-     * Returns the value of field address
-     *
-     * @return string
-     */
-    public function getAddress()
-    {
+    function getaddress() {
         return $this->address;
     }
 
-    /**
-     * Returns the value of field phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
+    function getphone() {
         return $this->phone;
     }
 
-    /**
-     * Returns the value of field email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
+    function getemail() {
         return $this->email;
     }
 
-    /**
-     * Returns the value of field tipoId
-     *
-     * @return string
-     */
-    public function getTipoId()
-    {
+    function gettipoId() {
         return $this->tipoId;
     }
 
-    /**
-     * Returns the value of field numeroId
-     *
-     * @return string
-     */
-    public function getNumeroId()
-    {
+    function getnumeroId() {
         return $this->numeroId;
     }
 
-    /**
-     * Returns the value of field customField1
-     *
-     * @return string
-     */
-    public function getCustomField1()
-    {
+    function getcustomField1() {
         return $this->customField1;
     }
 
-    /**
-     * Returns the value of field customField2
-     *
-     * @return string
-     */
-    public function getCustomField2()
-    {
+    function getcustomField2() {
         return $this->customField2;
     }
 
-    /**
-     * Returns the value of field customField3
-     *
-     * @return string
-     */
-    public function getCustomField3()
-    {
+    function getcustomField3() {
         return $this->customField3;
     }
 
-    /**
-     * Returns the value of field status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
+    function getstatus() {
         return $this->status;
     }
 
-    /**
-     * Method to set the value of field listID
-     *
-     * @param string $listID
-     * @return $this
-     */
-    public function setListID($listID)
-    {
-        $this->listID = $listID;
+// **********************
+// SETTER METHODS
+// **********************
 
-        return $this;
+
+    function setlistID($val) {
+        $this->listID = $val;
     }
 
-    /**
-     * Method to set the value of field timeCreated
-     *
-     * @param string $timeCreated
-     * @return $this
-     */
-    public function setTimeCreated($timeCreated)
-    {
-        $this->timeCreated = $timeCreated;
-
-        return $this;
+    function settimeCreated($val) {
+        $this->timeCreated = $val;
     }
 
-    /**
-     * Method to set the value of field timeModified
-     *
-     * @param string $timeModified
-     * @return $this
-     */
-    public function setTimeModified($timeModified)
-    {
-        $this->timeModified = $timeModified;
-
-        return $this;
+    function settimeModified($val) {
+        $this->timeModified = $val;
     }
 
-    /**
-     * Method to set the value of field editSequence
-     *
-     * @param integer $editSequence
-     * @return $this
-     */
-    public function setEditSequence($editSequence)
-    {
-        $this->editSequence = $editSequence;
-
-        return $this;
+    function seteditSequence($val) {
+        $this->editSequence = $val;
     }
 
-    /**
-     * Method to set the value of field isActive
-     *
-     * @param integer $isActive
-     * @return $this
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
+    function setname($val) {
+        $this->name = $val;
     }
 
-    /**
-     * Method to set the value of field tipoId
-     *
-     * @param string $tipoId
-     * @return $this
-     */
-    public function setTipoId($tipoId)
-    {
-        $this->tipoId = $tipoId;
-
-        return $this;
+    function setisActive($val) {
+        $this->isActive = $val;
     }
 
-    /**
-     * Method to set the value of field numeroId
-     *
-     * @param string $numeroId
-     * @return $this
-     */
-    public function setNumeroId($numeroId)
-    {
-        $this->numeroId = $numeroId;
-
-        return $this;
+    function setdescription($val) {
+        $this->description = $val;
     }
 
-    /**
-     * Method to set the value of field customField1
-     *
-     * @param string $customField1
-     * @return $this
-     */
-    public function setCustomField1($customField1)
-    {
-        $this->customField1 = $customField1;
-
-        return $this;
+    function setaddress($val) {
+        $this->address = $val;
     }
 
-    /**
-     * Method to set the value of field customField2
-     *
-     * @param string $customField2
-     * @return $this
-     */
-    public function setCustomField2($customField2)
-    {
-        $this->customField2 = $customField2;
-
-        return $this;
+    function setphone($val) {
+        $this->phone = $val;
     }
 
-    /**
-     * Method to set the value of field customField3
-     *
-     * @param string $customField3
-     * @return $this
-     */
-    public function setCustomField3($customField3)
-    {
-        $this->customField3 = $customField3;
-
-        return $this;
+    function setemail($val) {
+        $this->email = $val;
     }
 
-    /**
-     * Returns the value of field listID
-     *
-     * @return string
-     */
-    public function getListID()
-    {
-        return $this->listID;
+    function settipoId($val) {
+        $this->tipoId = $val;
     }
 
-    /**
-     * Returns the value of field timeCreated
-     *
-     * @return string
-     */
-    public function getTimeCreated()
-    {
-        return $this->timeCreated;
+    function setnumeroId($val) {
+        $this->numeroId = $val;
     }
 
-    /**
-     * Returns the value of field timeModified
-     *
-     * @return string
-     */
-    public function getTimeModified()
-    {
-        return $this->timeModified;
+    function setcustomField1($val) {
+        $this->customField1 = $val;
     }
 
-    /**
-     * Returns the value of field editSequence
-     *
-     * @return integer
-     */
-    public function getEditSequence()
-    {
-        return $this->editSequence;
+    function setcustomField2($val) {
+        $this->customField2 = $val;
     }
 
-    /**
-     * Returns the value of field isActive
-     *
-     * @return integer
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
+    function setcustomField3($val) {
+        $this->customField3 = $val;
     }
 
-    /**
-     * Returns the value of field tipoId
-     *
-     * @return string
-     */
-    public function getTipoId()
-    {
-        return $this->tipoId;
+    function setstatus($val) {
+        $this->status = $val;
     }
 
-    /**
-     * Returns the value of field numeroId
-     *
-     * @return string
-     */
-    public function getNumeroId()
-    {
-        return $this->numeroId;
-    }
-
-    /**
-     * Returns the value of field customField1
-     *
-     * @return string
-     */
-    public function getCustomField1()
-    {
-        return $this->customField1;
-    }
-
-    /**
-     * Returns the value of field customField2
-     *
-     * @return string
-     */
-    public function getCustomField2()
-    {
-        return $this->customField2;
-    }
-
-    /**
-     * Returns the value of field customField3
-     *
-     * @return string
-     */
-    public function getCustomField3()
-    {
-        return $this->customField3;
-    }
-
-    /**
-     * Validations and business logic
-     *
-     * @return boolean
-     */
-    public function validation()
-    {
-        $validator = new Validation();
-
-        $validator->add(
-            'email',
-            new EmailValidator(
-                [
-                    'model'   => $this,
-                    'message' => 'Please enter a correct email address',
-                ]
-            )
-        );
-
-        return $this->validate($validator);
-    }
-
-    /**
-     * Initialize method for model.
-     */
     public function initialize()
     {
         $this->setSchema("carrillo_dbaurora");

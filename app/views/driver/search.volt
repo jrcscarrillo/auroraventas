@@ -1,18 +1,22 @@
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <p></p>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <nav>
             <ul class="pagination">
-                <li class="previous">{{ link_to("driver/index", "Atras") }}</li>
+                <li>{{ link_to("driver/index", "Atras", "class": "btn btn-info") }}</li>
                 <li>{{ link_to("driver/search", "Primera") }}</li>
                 <li>{{ link_to("driver/search?page="~page.before, "Ant.") }}</li>
                 <li>{{ link_to("driver/search?page="~page.next, "Sig.") }}</li>
                 <li>{{ link_to("driver/search?page="~page.last, "Fin") }}</li>
+                <li>{{ link_to("driver/new", "Generar", "class": "btn btn-info") }}</li>
             </ul>
         </nav>
     </div>
+                <div class="col-sm-3">
+            <h1>Choferes</h1>
+    </div>    
     <div class="col-sm-3">
         <nav>
             <ul class="pagination pagination-lg">

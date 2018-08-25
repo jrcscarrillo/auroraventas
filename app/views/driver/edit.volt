@@ -1,10 +1,9 @@
-{% extends "layouts/adicional_1.volt" %}
+{% extends "layouts/adicional.volt" %}
 {% block forma %}
     {{ content() }}
     <p>
         {{ link_to("driver", "Regresar", "class": "btn btn-primary") }}
     </p>
-    <div class="body bg-blue">
     {% endblock %}
     {% block cabecera %}
         {{ form('driver/save', 'id': 'drivernewForm', 'class': 'sky-form') }}
@@ -117,5 +116,4 @@
             <p class="help-block">Usted esta generando un nuevo chofer.</p>
         </footer>
     </form>
-</div>
 {% endblock %}

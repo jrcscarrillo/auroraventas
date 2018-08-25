@@ -84,6 +84,21 @@ try {
     });
     
     $di->set(
+       'toprtprod', function() {
+        return new ToPrtProd();
+    });
+    
+    $di->set(
+       'toprttrf', function() {
+        return new ToPrtTrf();
+    });
+    
+    $di->set(
+       'toprtinv', function() {
+        return new ToPrtInv();
+    });
+    
+    $di->set(
        'topdfbonifica', function() {
         return new ToPdfBonifica();
     });

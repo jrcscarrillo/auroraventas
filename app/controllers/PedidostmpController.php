@@ -181,7 +181,7 @@ class PedidostmpController extends ControllerBase {
     public function deleteAction($TxnID) {
         $pedidostmp = Pedidostmp::findFirstByTxnID($TxnID);
         if (!$pedidostmp) {
-            $this->flash->error("pedidostmp was not found");
+            $this->flash->error("Este pedido " . $TxnID . " no fue encontrado");
 
             $this->dispatcher->forward([
                'controller' => "pedidostmp",
@@ -205,7 +205,7 @@ class PedidostmpController extends ControllerBase {
             return;
         }
 
-        $this->flash->success("pedidostmp was deleted successfully");
+        $this->flash->success("Este pedido " . $pedidostmp->TxnNumber . "fue eliminado satisfactoriamente");
 
         $this->dispatcher->forward([
            'controller' => "pedidostmp",

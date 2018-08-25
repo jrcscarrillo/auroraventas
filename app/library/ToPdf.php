@@ -187,7 +187,6 @@ table td.derch { background-color: #fcf8f2;
 <!-- ITEMS HERE -->';
         $productos = $helados->pedidosdetalle;
         foreach ($productos as $producto) {
-//                echo 'PRODUCTO ' . $producto->Description;
             $html .= '<tr><td>' . substr($producto->Description, 0, 13) . '</td>';
             $html .= '<td>' . substr($producto->Description, 14) . '</td>';
             $html .= '<td align="right">' . number_format($producto->Quantity, 2, ',', '.') . '</td>';

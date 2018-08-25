@@ -1,11 +1,10 @@
-{% extends "layouts/adicional_1.volt" %}
+{% extends "layouts/adicional.volt" %}
 {% block forma %}
 
     {{ content() }}
     <p>
         {{ link_to("vehicle", "Atras", "class": "btn btn-primary") }}
     </p>
-    <div class="body bg-blue">
     {% endblock %}
     {% block cabecera %}
         {{ form('vehicle/create', 'id': 'routenewForm', 'class': 'sky-form') }}
@@ -108,5 +107,4 @@
             <p class="help-block">Usted esta generando un nuevo vehiculo.</p>
         </footer>
     </form>
-</div>
 {% endblock %}

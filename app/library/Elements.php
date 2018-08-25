@@ -95,38 +95,6 @@ class Elements extends Component {
                   'action' => 'index',
                   'any' => true
                ),
-               'Choferes' => array(
-                  'controller' => 'driver',
-                  'action' => 'index',
-                  'any' => true
-               ),
-               'Bodegas' => array(
-                  'controller' => 'warehouse',
-                  'action' => 'index',
-                  'any' => true
-               ),
-               'Vehiculos' => array(
-                  'controller' => 'vehicle',
-                  'action' => 'index',
-                  'any' => true
-               ),
-               'Rutas' => array(
-                  'controller' => 'route',
-                  'action' => 'index',
-                  'any' => true
-               ),
-               'FacturasQB' => array(
-                  'controller' => 'invoice',
-                  'caption' => 'FacturasQB',
-                  'action' => 'indexventas',
-                  'any' => true
-               ),
-               'NotasCreditoQB' => array(
-                  'controller' => 'creditmemo',
-                  'caption' => 'NotasQB',
-                  'action' => 'indexventas',
-                  'any' => true
-               ),
                'Pedidos' => array(
                   'controller' => 'pedidos',
                   'action' => 'index',
@@ -138,16 +106,42 @@ class Elements extends Component {
                   'action' => 'indexpagos',
                   'any' => true
                ),
-               'Estado de Cuenta' => array(
-                  'controller' => 'estadocuenta',
+               'Bodegas' => array(
+                  'controller' => 'bodegas',
                   'action' => 'index',
                   'any' => true
                ),
-               'Reportes' => array(
+               'Produccion' => array(
+                  'controller' => 'lotesdetalle',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'Transferencias' => array(
+                  'controller' => 'lotestrxcab',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'Inventarios' => array(
+                  'controller' => 'inventario',
+                  'caption' => 'Inventarios',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'R.Pedido' => array(
                   'controller' => 'reportepedidos',
                   'action' => 'index',
                   'any' => true
-               )
+               ),
+               'R.Prod' => array(
+                  'controller' => 'reporteproduccion',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'R.Invent' => array(
+                  'controller' => 'reporteinventarios',
+                  'action' => 'index',
+                  'any' => true
+               ),
             );
         } elseif ($tipo == 'EMPLEADO') {
             $_tabs = array(
@@ -161,18 +155,6 @@ class Elements extends Component {
                   'action' => 'index',
                   'any' => true
                ),
-               'FacturasQB' => array(
-                  'controller' => 'invoice',
-                  'caption' => 'FacturasQB',
-                  'action' => 'indexventas',
-                  'any' => true
-               ),
-               'NotasCreditoQB' => array(
-                  'controller' => 'creditmemo',
-                  'caption' => 'NotasQB',
-                  'action' => 'indexventas',
-                  'any' => true
-               ),
                'Pedidos' => array(
                   'controller' => 'pedidos',
                   'action' => 'index',
@@ -184,16 +166,42 @@ class Elements extends Component {
                   'action' => 'indexpagos',
                   'any' => true
                ),
-               'Estado de Cuenta' => array(
-                  'controller' => 'estadocuenta',
+               'Bodegas' => array(
+                  'controller' => 'bodegas',
                   'action' => 'index',
                   'any' => true
                ),
-               'Reportes' => array(
+               'Produccion' => array(
+                  'controller' => 'lotesdetalle',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'Transferencias' => array(
+                  'controller' => 'lotestrxcab',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'Inventarios' => array(
+                  'controller' => 'inventario',
+                  'caption' => 'Inventarios',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'R.Pedido' => array(
                   'controller' => 'reportepedidos',
                   'action' => 'index',
                   'any' => true
-               )
+               ),
+               'R.Prod' => array(
+                  'controller' => 'reporteproduccion',
+                  'action' => 'index',
+                  'any' => true
+               ),
+               'R.Invent' => array(
+                  'controller' => 'reporteinventarios',
+                  'action' => 'index',
+                  'any' => true
+               ),
             );
         }
         foreach ($_tabs as $caption => $option) {
