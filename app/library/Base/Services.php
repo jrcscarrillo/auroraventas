@@ -1,8 +1,9 @@
 <?php
-
 namespace Base;
 
-class Services extends \Phalcon\DI\FactoryDefault
+use Phalcon\Di\FactoryDefault as Injector;
+
+class Services extends Injector
 {
     public function __construct($config)
     {

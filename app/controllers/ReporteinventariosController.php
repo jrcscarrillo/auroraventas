@@ -1,24 +1,18 @@
 <?php
-
-
 class ReporteinventariosController extends ControllerBase {
-
     protected $tipo;
     protected $inidate;
     protected $findate;
     protected $bodega;
     protected $producto;
-
     public function initialize() {
         $this->tag->setTitle('R.Inv.');
         parent::initialize();
     }
-
     public function indexAction() {
         $form = new ReporteInventariosForm;
         $this->view->form = $form;
     }
-
     public function imprimirAction() {
         $auth = $this->session->get('auth');
         if ($auth['tipo'] <> 'ADMINISTRADOR') {
@@ -63,7 +57,6 @@ class ReporteinventariosController extends ControllerBase {
             ]);
         }
     }
-
     public function movinicialAction() {
         $params = $this->session->get('RINVENTARIOS');
         $this->toprtinv->imprimeInventarioInicial($params);
@@ -77,5 +70,4 @@ class ReporteinventariosController extends ControllerBase {
         $this->flash->notice("Su reporte se ha generado en el directorio AURORA/Inventarios");
 //        return $this->dispatcher->forward(['action' => 'index']);
         }
-
 }

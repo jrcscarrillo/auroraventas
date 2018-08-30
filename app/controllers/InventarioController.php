@@ -108,6 +108,7 @@ class InventarioController extends ControllerBase {
         $lotestrxcab->setOrigenID($lotestrx->getOrigenTomaFisica());
         $lotestrxcab->setDestinoID($this->request->getPost('DestinoTrx'));
         $lotestrx->setDestinoTrx($this->request->getPost('DestinoTrx'));
+        $lotestrx->setDestinoSub($this->request->getPost('DestinoTrx'));
         $lotestrx->setQtyTrx($this->request->getPost('QtyTrx'));
 
 
@@ -124,6 +125,7 @@ class InventarioController extends ControllerBase {
         $lotestrx->setMemoTrx($this->request->getPost('MemoTrx'));
         $lotestrx->setNumeroTrx($codeValue);
         $lotestrx->setOrigenTrx($lotestrx->getOrigenTomaFisica());
+        $lotestrx->setOrigenSub($lotestrx->getOrigenTomaFisica());
         $lotestrx->setRefNumber($codeValue);
         $lotestrx->setTipoTrx('INVENTARIO-INICIAL');
         $lotestrxcab->setRefType('INVENTARIO-INICIAL');

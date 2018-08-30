@@ -2,6 +2,8 @@
 
 use Phalcon\Mvc\User\Component as componente;
 
+ini_set("pcre.backtrack_limit", "5000000");
+
 class ToPrtInv extends componente {
 
     protected $iniDate;
@@ -96,7 +98,16 @@ class ToPrtInv extends componente {
         $archivo = APP_PATH . 'public/css/reporte.css';
         $stylesheet = file_get_contents($archivo);
         $mpdf->WriteHTML($stylesheet, 1);
-        $mpdf->WriteHTML($html);
+        try {
+            $mpdf->WriteHTML($html);
+        } catch (Exception $ex) {
+            $html = '<div class="row"><div class="col-md-3 fontlogo">Los Coqueiros - Errores en la impresion</div>';
+            $html .= '<div class="col-md-8">' . $ex->getMessage() . '</div>
+                <div class="col-md-1">
+                    <span>Informar a Soporte</span>
+                </div></div>';
+            $mpdf->WriteHTML($html);
+        }
 //        $mpdf->Output($filename, \Mpdf\Output\Destination::INLINE);
         $filename = 'movimientos' . trim($this->bodega) . '.pdf';
         $mpdf->Output($filename, 'F');
